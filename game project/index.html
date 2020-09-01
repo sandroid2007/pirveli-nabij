@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ლეთოდანიო</title>
+		
+
+
+	</head>
+	<body>
+
+
+
+
+		<script>
+/*
+variable mze is sun,which is just for decoration
+variable miwa is land
+variable mari is problem,i want it to jump-it jumps but it doesn't land.help  somebody please!!!!
+
+*/
+var ca_feri = "#0000FF";
+document.body.style.backgroundColor = ca_feri;
+
+var startButton = document.createElement("button");
+var startButtonText = document.createTextNode("დაწყება");
+
+
+
+startButton.appendChild(startButtonText);
+startButton.style.position = "absolute";
+startButton.style.width = "300px";
+startButton.style.height = "100px";
+startButton.style.padding = "3px w3px 3px 3px";
+startButton.style.left = "450px";
+startButton.style.bottom = "200px";
+startButton.style.fontSize = "50px";
+startButton.addEventListener("click",game,false);
+document.body.appendChild(startButton);
+
+
+//start !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+function game(){
+
+//mari
+var YposM = 52;
+var XposM = 200;
+var time  = 0;
+
+//sandro
+var YposS = 52;
+var XposS = 300;
+
+
+//style
+//mari
+var mari = document.createElement("img");//chveulebrivi.jpg  Snapshot_5.png
+mari.src = "chveulebrivi.jpg";
+
+//sandro
+var sandro = document.createElement("img");
+sandro.src = "Snapshot_5.png";
+
+var divA = document.createElement("div"); //ground
+var mze = document.createElement("img");
+mze.src = "mze.png";
+
+
+//mze
+mze.style.width = "90px";
+mze.style.height = "100px";
+mze.style.position = "absolute";
+mze.style.left = XposM - 190 + "px";
+mze.style.top = "10px";
+
+//miwa
+divA.style.borderTop = "2px ridge black";
+divA.style.borderLeft = "2px ridge black";
+divA.style.borderRight = "2px ridge black";
+divA.style.position = "absolute";
+divA.style.bottom = "0px";
+divA.style.left = "0px";
+divA.style.width = "1376px";
+divA.style.height = "50px";
+divA.style.backgroundColor = "#436A80";
+
+
+//personaji
+
+//mari
+mari.style.position = "absolute";
+
+
+
+//ani part
+mari.style.bottom = YposM + "px";
+mari.style.left = XposM + "px";
+
+
+mari.style.backgroundColor = ca_feri;
+mari.style.width = "80px";
+mari.style.height = "80px";
+
+
+//sandro
+sandro.style.position = "absolute";
+
+
+
+//ani part
+sandro.style.bottom = YposS + "px";
+sandro.style.left = XposS + "px";
+
+
+sandro.style.backgroundColor = ca_feri;
+sandro.style.width = "80px";
+sandro.style.height = "80px";
+
+
+window.addEventListener("keyup",moveUP,false);
+
+window.addEventListener("keydown",moveD,false);
+window.addEventListener("keydown",moveA,false);
+
+window.addEventListener("keydown",moveJ,false);
+window.addEventListener("keydown",moveL,false);
+
+
+
+
+
+
+
+function moveD(key){
+             if(key.keyCode == "68"){
+XposM +=15;
+
+
+              mari.style.left = XposM + "px";
+              mari.src = "marjvniv.jpg";
+                 }
+}
+
+function moveA(key){
+             if(key.keyCode == "65"){
+XposM -=15;
+              mari.src = "marcxniv.jpg";
+              mari.style.left = XposM + "px";
+
+                 }
+
+}
+function moveJ(key){
+             if(key.keyCode == "74"){
+
+XposS -=15;
+               sandro.style.left = XposS + "px";
+
+                 }
+
+}
+function moveL(key){
+             if(key.keyCode == "76"){
+XposS +=15;
+
+
+                     sandro.style.left = XposS + "px";
+                 }
+
+}
+
+/*
+
+function moveX(key){
+
+                  if( key.keyCode == "68" ){//marjvniv d
+              //marjvena
+              XposM +=15;
+
+
+              mari.style.left = XposM + "px";
+              mari.src = "marjvniv.jpg";
+                }
+             else if(key.keyCode == "65" ){//marcxniv a
+              //marcxena
+              XposM -=15;
+              mari.src = "marcxniv.jpg";
+              mari.style.left = XposM + "px";
+
+                }
+    //sandro
+            else if(key.keyCode == "74" ){//marcxniv j
+                 XposS -=15;
+               sandro.style.left = XposS + "px";
+
+
+                }
+            else if(key.keyCode == "76" ){//marjvinv l
+                     XposS +=15;
+
+
+                     sandro.style.left = XposS + "px";
+
+
+                }
+       
+}
+*/
+var inteS;
+var inteM;
+//problem starts down here
+
+
+var XM = 2.5;
+var NM = -0.01;
+var XS = 2.5;
+var NS = -0.01;
+//mari
+function movementMUP(key){
+//52 Ypos
+XM +=NM;
+YposM +=XM ;
+mari.style.bottom = YposM + "px";
+
+         if(YposM < 52){
+           clearInterval(inteM);
+           XM = 2.5;
+           NM = -0.01;
+           YposM = 52;
+            } 
+       
+}
+
+function movementSUP(key){
+//52 Ypos
+XS +=NS;
+YposS +=XS ;
+sandro.style.bottom = YposS + "px";
+
+         if(YposS < 52){
+           clearInterval(inteS);
+           XS = 2.5;
+           NS = -0.01;
+           YposS = 52;
+            } 
+       
+}
+
+
+
+
+function moveUP(key){
+
+
+          if(key.keyCode == "87" /* w zemot*/){
+
+                    mari.src = "zemota.jpg";
+                    inteM = setInterval(movementMUP,1);
+                    inteM;
+                                                    }
+       else if(key.keyCode == "73" /* i zemot*/){
+                    
+                    inteS = setInterval(movementSUP,1);
+                    inteS;
+                                                      }     
+}/// problem ends here/
+
+
+  
+
+
+
+
+document.body.appendChild(divA);
+document.body.appendChild(mze);
+document.body.appendChild(mari);
+document.body.appendChild(sandro);
+document.body.removeChild(startButton);
+}
+
+		</script>
+	</body>
+</html>
